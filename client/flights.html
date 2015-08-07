@@ -1,0 +1,9 @@
+<body>
+<div class="container">
+    <ul>
+        {{#each todayFlights}}
+            <li>{{flight_number}} {{formatDateTime departure_date_time}}</li>
+        {{/each}}
+    </ul>
+</div>
+</body>
