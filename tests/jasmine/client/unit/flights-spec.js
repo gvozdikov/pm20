@@ -3,6 +3,7 @@
  */
 describe("Client unit test", function () {
     it("Today's flights", function () {
-        expect(todayFlights().count()).toBe(1);
+        //console.log()
+        expect(Template.body.__helpers[' todayFlights']().count()).toBe(1);
     });
 });
