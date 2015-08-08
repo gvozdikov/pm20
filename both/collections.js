@@ -1,1 +1,1 @@
-flights = new Mongo.Collection('flights');
+Flights = new Mongo.Collection('flights');
