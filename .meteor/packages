@@ -10,3 +10,4 @@ insecure
 momentjs:moment
 sanjo:jasmine
 velocity:html-reporter
+coffeescript
