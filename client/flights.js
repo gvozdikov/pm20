@@ -1,3 +1,5 @@
+console.log(flights);
+
 Template.body.helpers({
   allFlights: function () {
     return flights.find();

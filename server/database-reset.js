@@ -19,11 +19,6 @@ if (process.env.IS_MIRROR) {
         booking_number: flight_number,
         departure_date_time: new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1, now.getHours(), now.getMinutes())
       });
-      console.log(flights.find());
-      Accounts.createUser({
-        email: 'andrey.gvozdikov@fastdev.se',
-        password: '123456'
-      });
 
       console.log('Finished loading default fixtures');
     },
