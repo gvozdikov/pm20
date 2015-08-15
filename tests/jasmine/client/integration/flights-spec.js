@@ -1,5 +1,8 @@
-describe("Client unit test", function () {
-    it("Today's flights", function () {
-        expect(Template.body.__helpers[' todayFlights']().count()).toBe(1);
-    });
+describe("FLight list spec", function () {
+  beforeEach(resetTestingEnvironment);
+  beforeEach(createFlight);
+
+  it("Today's flights", function () {
+    expect(Template.body.__helpers[' todayFlights']().count()).toBe(1);
+  });
 });
