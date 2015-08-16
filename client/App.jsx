@@ -18,8 +18,7 @@ App = React.createClass({
   },
 
   renderFlights() {
-    console.log(this.data.todayFlights);
-    return this.data.flights.map((flight) => {
+    return this.data.todayFlights.map((flight) => {
       return <Flight key={flight._id} flight={flight} />;
     });
   },

@@ -7,6 +7,6 @@
 meteor-platform
 autopublish
 insecure
-momentjs:moment
 coffeescript
 react
+momentjs:moment
