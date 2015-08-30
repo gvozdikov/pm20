@@ -10,3 +10,8 @@ insecure
 coffeescript
 react
 momentjs:moment
+sanjo:jasmine
+velocity:html-reporter
+accounts-ui
+accounts-password
+fixtures

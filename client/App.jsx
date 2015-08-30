@@ -7,13 +7,8 @@ App = React.createClass({
   getMeteorData() {
     var now = new Date();
     return {
-      flights: Flights.find({}).fetch(),
-      todayFlights: Flights.find({
-        departure_date_time: {
-          $gt: new Date(now.getFullYear(), now.getMonth(), now.getDate()),
-          $lt: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1)
-        }
-      }).fetch()
+      flights: FlightService.getAllFlights().fetch(),
+      todayFlights: FlightService.getTodayFlights().fetch()
     }
   },
 
