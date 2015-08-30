@@ -26,6 +26,10 @@ App = React.createClass({
   render() {
     return (
       <div className="container">
+        <select value="all">
+          <option value="all">All flights</option>
+          <option value="today">Today flights</option>
+        </select>
         <ul>
           {this.renderFlights()}
         </ul>
