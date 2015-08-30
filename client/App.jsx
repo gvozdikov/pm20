@@ -18,15 +18,31 @@ App = React.createClass({
   },
 
   renderFlights() {
-    return this.data.todayFlights.map((flight) => {
+    var data = this.data.flights;
+    if (this.state.value === "today") {
+      data = this.data.todayFlights;
+    }
+
+    return data.map((flight) => {
       return <Flight key={flight._id} flight={flight} />;
     });
+  },
+
+  getInitialState() {
+    return {
+      value: 'all'
+    }
+  },
+
+  filterChange(event) {
+    this.setState({value: event.target.value});
+    // event.preventDefault();
   },
 
   render() {
     return (
       <div className="container">
-        <select value="all">
+        <select onChange={this.filterChange} >
           <option value="all">All flights</option>
           <option value="today">Today flights</option>
         </select>
