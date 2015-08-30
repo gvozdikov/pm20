@@ -16,4 +16,4 @@
 * tutorial: https://velocity.readme.io/docs/getting-started-with-jasmine
 * path to specs: pm20/tests/jasmine
 * db fixtures are set in: pm20/packages/fixtures/fixtures.js
-* jasmine logs (go to project directory and select a log file by environment): tail -f .meteor/local/log/jasmine-client-integration.log
+* jasmine logs (go to project directory and select a log file by environment): tail -f /.meteor/local/log/jasmine-client-integration.log
