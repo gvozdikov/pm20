@@ -1,38 +1,51 @@
 App = React.createClass({
 
-  // This mixin makes the getMeteorData method work
   mixins: [ReactMeteorData],
 
-  // Loads items from the Flights collection and puts them on this.data.tasks
   getMeteorData() {
-    var now = new Date();
+
+    let result = FlightService.getAllFlights();
+
+    if (this.state.filter === "today") {
+      if (this.state.hideDepartured === true) {
+        result = FlightService.getDepartingTodayFlights();
+      }
+      result = FlightService.getTodayFlights();
+    }
+
+    if (this.state.hideDepartured === true) {
+      result = FlightService.getNotDeparturedFlights();
+    }
+
     return {
-      flights: FlightService.getAllFlights().fetch(),
-      todayFlights: FlightService.getTodayFlights().fetch()
-    }
-  },
+      flights: result.fetch()
+    };
 
-  renderFlights() {
-    var data = this.data.flights;
-    if (this.state.value === "today") {
-      data = this.data.todayFlights;
-    }
-
-    return data.map((flight) => {
-      return <Flight key={flight._id} flight={flight} />;
-    });
   },
 
   getInitialState() {
     return {
-      value: 'all'
+      filter: 'all',
+      hideDepartured: false
     }
+  },
+
+  renderFlights() {
+    return this.data.flights.map((flight) => {
+      return <Flight key={flight._id} flight={flight} />;
+    });
+  },
+
+  toggleHideDepartured() {
+    console.log('hideDepartured = ' + this.state.hideDepartured);
+    this.setState({
+      hideDepartured: !this.state.hideDepartured
+    });
   },
 
   handleAddFlight(event) {
     event.preventDefault();
 
-    // Find the text field via the React ref
     var text = React.findDOMNode(this.refs.textInput).value.trim();
 
     Flights.insert({
@@ -45,7 +58,7 @@ App = React.createClass({
   },
 
   handleFilterChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({filter: event.target.value});
   },
 
   render() {
@@ -53,6 +66,15 @@ App = React.createClass({
       <div className="container">
         <header>
           <h1>Flight List</h1>
+
+          <label className="hide-departured">
+            <input
+                type="checkbox"
+                checked={this.state.hideDepartured}
+                onClick={this.toggleHideDepartured} />
+            Hide Departured Flights
+          </label>
+
           <form className="new-flight" onSubmit={this.handleAddFlight} >
             <lable>
               Add flight:
@@ -62,6 +84,7 @@ App = React.createClass({
                 placeholder="Flight number" />
             </lable>
           </form>
+
           <select onChange={this.handleFilterChange} >
             <option value="all">All flights</option>
             <option value="today">Today flights</option>
